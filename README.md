@@ -1,6 +1,6 @@
 # TCL customer portal
 
-Next.js customer portal (orders, proofs, Supabase Auth). Application code lives in **`portal/`**.
+Next.js customer portal for orders, proofs, and Supabase Auth.
 
 ## Demo sign-in (local seed)
 
@@ -26,14 +26,14 @@ Use only on non-production environments. Change or remove this user before going
 
 ## Step-by-step: run locally
 
-### 1. Clone and enter the app directory
+### 1. Clone and enter the project root
 
 ```bash
 git clone <repository-url>
-cd tcl-portal/portal
+cd <repository-directory>
 ```
 
-All `npm` and `npx` commands below are run from **`portal/`**.
+All `npm` and `npx` commands below are run from the **repository root** (same folder as `package.json`).
 
 ### 2. Install dependencies
 
@@ -43,7 +43,7 @@ npm install
 
 ### 3. Start Supabase (Docker must be running)
 
-From **`portal/`**:
+From the **repository root**:
 
 ```bash
 npx supabase start
@@ -53,7 +53,7 @@ Note the printed **API URL**, **anon key**, and **service role** key (Studio URL
 
 ### 4. Apply schema and seed (fresh local DB)
 
-From **`portal/`**, reset the database (runs the single migration in `supabase/migrations/` plus `seed.sql` and `seed-proofs-demo.sql`):
+From the **repository root**, reset the database (runs migrations in `supabase/migrations/` plus `seed.sql` and `seed-proofs-demo.sql`):
 
 ```bash
 npx supabase db reset
@@ -106,13 +106,13 @@ npm start
 
 ---
 
-## Fresh setup on hosted Supabase (client project)
+## Fresh setup on hosted Supabase
 
 1. Create a Supabase project.
-2. In **SQL Editor**, run the contents of **`portal/supabase/migrations/20260110120000_initial_schema.sql`** once (full schema for a new database).
+2. Apply database migrations: either link this repo and run **`npx supabase db push`**, or in **SQL Editor** run each file under **`supabase/migrations/`** in **filename (timestamp) order**, starting with **`20260110120000_initial_schema.sql`** for a new database.
 3. In **Authentication → Providers**, enable **Email** if needed.
 4. Create a user (e.g. **Sign up** from the app, or invite via dashboard), then add **products** (or use **SQL** / **Table Editor**). The app expects `public.users` rows linked to `auth.users` (the migration trigger `handle_new_user` does this on new sign-ups).
-5. Optionally run **`portal/supabase/seed-proofs-demo.sql`** in the SQL Editor to attach demo proofs to an order that has none (see comments in that file).
+5. Optionally run **`supabase/seed-proofs-demo.sql`** in the SQL Editor to attach demo proofs to an order that has none (see comments in that file).
 6. Create a **public** storage bucket named **`product_image`** (or set `NEXT_PUBLIC_SUPABASE_DESIGNS_BUCKET` to match your bucket) with policies appropriate for your security model.
 7. Copy **Project URL**, **anon**, and **service_role** keys into **`.env.local`** on your host (e.g. Vercel env vars).
 
@@ -122,16 +122,16 @@ npm start
 
 | Path | Purpose |
 | ---- | ------- |
-| `portal/` | Next.js app, `package.json`, `middleware.ts`, `app/`, `components/`, etc. |
-| `portal/supabase/migrations/` | **One** migration file for greenfield setups |
-| `portal/supabase/seed.sql` | Demo user, products, sample order |
-| `portal/supabase/seed-proofs-demo.sql` | Optional demo proof rows (runs after seed on `db reset`) |
-| `portal/.env.example` | Template for `NEXT_PUBLIC_*` and server keys |
-| `AGENTS.md` / `CLAUDE.md` | Cursor / agent notes (repo root) |
+| Root | Next.js app: `package.json`, `middleware.ts`, `app/`, `components/`, etc. |
+| `supabase/migrations/` | SQL migrations (schema, triggers, seeds applied via `db reset` / `db push`) |
+| `supabase/seed.sql` | Demo user, products, sample order |
+| `supabase/seed-proofs-demo.sql` | Optional demo proof rows (runs after seed on `db reset`) |
+| `.env.example` | Template for `NEXT_PUBLIC_*` and server keys |
+| `AGENTS.md` / `CLAUDE.md` | Cursor / agent notes |
 
 ---
 
-## Useful npm scripts (from `portal/`)
+## Useful npm scripts (from the repository root)
 
 | Script | Command |
 | ------ | ------- |
@@ -145,7 +145,7 @@ npm start
 
 ## How to check the bonus deliverables (2–4)
 
-Run everything from **`portal/`** with the app and Supabase working as in the steps above.
+Run everything from the **repository root** with the app and Supabase working as in the steps above.
 
 ### Bonus 2 — Gemini “what happens next”
 
@@ -187,7 +187,7 @@ Run everything from **`portal/`** with the app and Supabase working as in the st
    npm run migration:agent
    ```
 3. **Terminal:** Each step prints a short preview of the model output.
-4. **Output file:** Open **`portal/scripts/agent-pipeline-output.md`** (this path is gitignored; it is created on disk after a successful run). Skim all three sections to confirm the pipeline completed.
+4. **Output file:** Open **`scripts/agent-pipeline-output.md`** (this path is gitignored; it is created on disk after a successful run). Skim all three sections to confirm the pipeline completed.
 
 ### Related: product sync API (often grouped with extras)
 
@@ -198,7 +198,7 @@ Run everything from **`portal/`** with the app and Supabase working as in the st
 ## Troubleshooting
 
 - **`npx supabase start` fails** — Start Docker Desktop; wait until it is fully running, then retry.
-- **Login fails after reset** — Run `npx supabase db reset` again from **`portal/`**; confirm `.env.local` matches `npx supabase status`.
+- **Login fails after reset** — Run `npx supabase db reset` again from the **repository root**; confirm `.env.local` matches `npx supabase status`.
 - **Uploads / design files fail** — Ensure bucket **`product_image`** exists and matches `NEXT_PUBLIC_SUPABASE_DESIGNS_BUCKET`.
 - **Gemini errors** — Confirm `GOOGLE_API_KEY` in `.env.local`, or leave it unset to use the built-in fallback text.
 
