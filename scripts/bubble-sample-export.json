@@ -1,0 +1,116 @@
+[
+  {
+    "_bubble_type": "User",
+    "bubble_unique_id": "USR001",
+    "name_text": "Madison Clarke",
+    "email_text": "madison.clarke@alphaphi.org",
+    "user_type_option_set": "customer",
+    "organization_text": "Alpha Phi",
+    "school_text": "University of Alabama",
+    "loyalty_points_number": 320
+  },
+  {
+    "_bubble_type": "User",
+    "bubble_unique_id": "USR002",
+    "name_text": "Tyler Nguyen",
+    "email_text": "tyler.nguyen@sigchi.org",
+    "user_type_option_set": "customer",
+    "organization_text": "Sigma Chi",
+    "school_text": "University of Georgia",
+    "loyalty_points_number": 85
+  },
+  {
+    "_bubble_type": "Product",
+    "bubble_unique_id": "PRD901",
+    "sku_text": "DEMO-BUBBLE-TEE",
+    "name_text": "Bubble Import Demo Tee",
+    "category_text": "T-Shirts",
+    "turnaround_days_number": 11,
+    "starting_price_number": 9.99,
+    "is_featured_boolean": false,
+    "print_types_option_set_csv": "screen_print,embroidery"
+  },
+  {
+    "_bubble_type": "Order",
+    "bubble_unique_id": "ORD901",
+    "customer_email_lookup": "madison.clarke@alphaphi.org",
+    "event_name_text": "Bubble JSON Import — Bid Day",
+    "due_date_date": "2026-05-15",
+    "status_option_set": "new",
+    "order_type_text": "event",
+    "products_selected_text": "[{\"productId\":\"demo\",\"name\":\"Demo Tee\",\"color\":\"White\"}]",
+    "print_type_option_set": "screen_print",
+    "front_design_description_text": null,
+    "back_design_description_text": ""
+  },
+  {
+    "_bubble_type": "Order",
+    "bubble_unique_id": "ORD902",
+    "customer_email_lookup": "tyler.nguyen@sigchi.org",
+    "event_name_text": "Derby Days 2026",
+    "due_date_date": "2026-06-01",
+    "status_option_set": "proof_pending",
+    "order_type_text": "event",
+    "products_selected_text": null,
+    "print_type_option_set": "embroidery",
+    "front_design_description_text": "Crest on left chest",
+    "back_design_description_text": null
+  },
+  {
+    "_bubble_type": "User",
+    "bubble_unique_id": "USR003",
+    "name_text": "Incomplete Row Demo",
+    "email_text": null,
+    "user_type_option_set": "customer",
+    "organization_text": null,
+    "school_text": null,
+    "loyalty_points_number": null
+  },
+  {
+    "_bubble_type": "Order",
+    "bubble_unique_id": "ORD903",
+    "customer_email_lookup": "no-such-user@example.com",
+    "event_name_text": "Should skip — unknown customer",
+    "due_date_date": "2026-07-01",
+    "status_option_set": "new",
+    "order_type_text": "group",
+    "products_selected_text": "[]",
+    "print_type_option_set": "foil",
+    "front_design_description_text": "—",
+    "back_design_description_text": "—"
+  },
+  {
+    "_bubble_type": "Product",
+    "bubble_unique_id": "PRD902",
+    "sku_text": "DEMO-BUBBLE-HAT",
+    "name_text": "Bubble Import Hat",
+    "category_text": "Headwear",
+    "turnaround_days_number": null,
+    "starting_price_number": 19,
+    "is_featured_boolean": true,
+    "print_types_option_set_csv": null
+  },
+  {
+    "_bubble_type": "Order",
+    "bubble_unique_id": "ORD904",
+    "customer_email_lookup": "madison.clarke@alphaphi.org",
+    "event_name_text": "Spring Formal",
+    "due_date_date": null,
+    "status_option_set": "new",
+    "order_type_text": "formal",
+    "products_selected_text": "[{\"productId\":\"x\",\"name\":\"Gown\",\"color\":\"Black\"}]",
+    "print_type_option_set": "dye_sublimation",
+    "front_design_description_text": "Full color back",
+    "back_design_description_text": null
+  },
+  {
+    "_bubble_type": "User",
+    "bubble_unique_id": "USR004",
+    "name_text": "Campus Rep Sample",
+    "email_text": "rep@campus.edu",
+    "user_type_option_set": "campus_rep",
+    "organization_text": "TCL Campus Reps",
+    "school_text": "State University",
+    "loyalty_points_number": 50
+  }
+]
