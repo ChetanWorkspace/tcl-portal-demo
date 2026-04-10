@@ -30,7 +30,7 @@ Use only on non-production environments. Change or remove this user before going
 
 ```bash
 git clone <repository-url>
-cd tcl-portal/portal
+cd tcl-portal-demo
 ```
 
 All `npm` and `npx` commands below are run from **`portal/`**.
